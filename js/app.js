@@ -1,6 +1,7 @@
 
 //Select the form.
 
+const ui = new Interface();
 let form = document.querySelector('#form');
 
 //Event Listener
@@ -19,7 +20,8 @@ form.addEventListener('submit', (e) => {
 
     //Validation
     if(selectedCurrency === '' || selectedcryptocurrency === ''){
-
+        
+        ui.showMessage('Ambos campos son Obligatorios', 'alert bg-danger text-center');
 
     }else {
 
