@@ -12,11 +12,21 @@ class API {
         const urlObtainCurrency = await fetch(url);
 
      // JSON response
-     const currency = await urlObtainCurrency.json();
+        const currency = await urlObtainCurrency.json();
 
-     return {
-         currency
-     }
+     return currency;
 
+    }
+
+
+    async obtainValues(currency,cryptocurrency){
+
+      const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${cryptocurrency}&tsyms=${currency}&api_key=${this.apikey}`;
+
+      const urlConvertCurrency = await fetch(url);
+
+      const value = urlConvertCurrency.json();
+
+      return value;
     }
 }
