@@ -10,7 +10,13 @@ h1 {
 }
 form {
     margin-top: 50px;
-    margin-bottom: 50px;
+		margin-bottom: 50px;
+		max-height:0px;
+}
+
+form.used{
+	max-height: 5000px;
+	transition: max-height 0.5s linear 0s;
 }
 .main-content {
     background-color: white;
@@ -19,14 +25,20 @@ form {
     box-shadow: -1px 20px 52px -13px rgba(0,0,0,0.75);
 }
 .messages {
-    color: white;
+		color: white;
 }
 
 #result {
-    text-align: center;
+		text-align: center;
 }
+
 .btn {
     width: 100%;
+}
+
+.appear{
+    animation: appear 2s linear ;
+    animation-fill-mode: forwards;  
 }
 
 .spinner {
@@ -34,30 +46,59 @@ form {
     width: 60px;
     height: 60px;
     background-color: #93C54B; 
-    margin: 100px auto;
+		z-index: 1;
     -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
     animation: sk-rotateplane 1.2s infinite ease-in-out;
   }
 
   .shadow{
-  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+	  display: none;
+	  position: absolute;
+	  opacity: 0.5;
+	  z-index: 0;
+	  box-shadow: 0px 200px 10px 6px black !important;
+	  animation: shadowMovement 1.2s infinite ease-in-out;
   }
   
   @-webkit-keyframes sk-rotateplane {
-    0% { -webkit-transform: perspective(120px) }
-    50% { -webkit-transform: perspective(120px) rotateY(180deg) }
-    100% { -webkit-transform: perspective(120px) rotateY(180deg)  rotateX(180deg) }
+    0% { -webkit-transform: perspective(120px)}
+    50% { -webkit-transform: perspective(120px) rotateY(180deg) translate(0px,15px)}
+    100% { -webkit-transform: perspective(120px) rotateY(180deg)  rotateX(180deg) translate(0px,0px)}
   }
   
   @keyframes sk-rotateplane {
     0% { 
-      transform: perspective(120px) rotateX(0deg) rotateY(0deg);
-      -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg) 
+			transform: perspective(120px) rotateX(0deg) rotateY(0deg) translate(0px, 0px);
+      -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg) translate(0px, 0px)
     } 50% { 
-      transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
-      -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg) 
+			transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg) translate(0px,100px) translate(0px,15px);
+      -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg) translate(0px,20px)
     } 100% { 
-      transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
-      -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+      transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg) translate(0px,0px);
+      -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg) translate(0px,0px)
+    }
+	}
+	
+	@keyframes shadowMovement  {
+    0% { 
+      width: 10px;
+    } 60% { 
+			width: 12px;
+    } 75% {    
+      width: 5px;
+    }100%{
+		  width: 10px;
+    }  
+  }
+
+  @keyframes appear  {
+    0% { 
+      opacity: 0;
+    } 30% { 
+			opacity: 100;
+    } 60% {    
+      opacity: 100;
+    } 100%{
+      opacity: 0;
     }
   }

@@ -11,34 +11,42 @@ class Interface  {
     selectConstructor(){
        quoter.obtainCurrencyAPI()
        .then(currency => {
-            
+
             const select = document.querySelector('#cryptoCurrency')
-            
+
             //Obtain the API values.
             for(const [key, value] of Object.entries(currency.Data)){
                // Add symbol and name as opcions for select.
                const option = document.createElement('option');
                option.value = value.Symbol;
                option.appendChild(document.createTextNode(value.CoinName));
-               select.appendChild(option);     
+               select.appendChild(option);
             }
-         
+
        });
     }
 
-    showMessage(message,classes){
+    showMessage(message, classes){
+
+
+          const firstMessage = document.querySelector('.messages > div');
+        
+		  if(firstMessage){
+            firstMessage.remove();
+		  }
+
         const div = document.createElement('div');
-        div.className = classes;
+        div.className = `${classes} appear`;
         div.appendChild(document.createTextNode(message));
+        const divMessage = document.querySelector('.messages');
+        divMessage.appendChild(div);
 
-        //Select messages div.
-         const divMessage = document.querySelector('.messages');
-         divMessage.appendChild(div);
-        //Show contenct.
-         setTimeout(()=>{
-            document.querySelector('.messages div').remove();
-         },3000);
-
+			//Show content.
+            const timer = setTimeout(()=>{
+                if (document.querySelector('.messages > div')){
+                    document.querySelector('.messages > div').remove();
+                }
+            },2100);
     }
 
     showResult(result, currency, cryptoCurrency){
@@ -47,18 +55,20 @@ class Interface  {
         const firstResult  = document.querySelector('#result > div');
 
         if(firstResult){
-            firstResult.remove(); 
+            firstResult.remove();
         }
 
+		try{
 
         const currencyResult = result[cryptoCurrency][currency];
 
+
         //Adjust numbers.
-        let price =  currencyResult.PRICE.toFixed(2),
+        let price   = currencyResult.PRICE.toFixed(2),
             porcent = currencyResult.CHANGEPCTDAY.toFixed(2),
             updated = new Date(currencyResult.LASTUPDATE * 1000).toLocaleDateString('en-USA');
 
-        //Template. 
+        //Template.
         let templateHTML = `
             <div class="card bg-warning">
                 <div class="card-body text-light">
@@ -71,21 +81,31 @@ class Interface  {
             </div>
         `;
 
-        this.showHiddenSpinner('block');
-       
+				this.showHiddenSpinner('block');
+
         setTimeout(()=>{
-               // Insert the result.
-                document.querySelector('#result').innerHTML = templateHTML;
-                this.showHiddenSpinner('none');
-        },3000);
-     
+							 // Insert the result.
+			this.showHiddenSpinner('none');
+			document.querySelector('#result').innerHTML = templateHTML;
+		},3000);
+
+		}catch(err){
+			this.showMessage(`We don´t have the convertion from ${currency} to ${cryptoCurrency}`,'alert bg-danger text-center');
+			console.log(err);
+		}
+
     }
 
     showHiddenSpinner(show){
 
-        //Show the spinner
-        const spinner = document.querySelector('.spinner');
-        spinner.style.display = `${show}`;
+				//Show the spinner and adjust the form
+				const form 	  = document.querySelector('#form');
+				const spinner = document.querySelector('.spinner');
+				const shadow  = document.querySelector('.shadow');
+
+				form.classList.add("used");
+				spinner.style.display = `${show}`;
+				shadow.style.display  = `${show}`;
     }
 
 }
