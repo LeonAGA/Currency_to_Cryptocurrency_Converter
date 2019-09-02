@@ -81,11 +81,11 @@ class Interface  {
             </div>
         `;
 
-				this.showHiddenSpinner('block');
+				this.showHiddenSpinner('block', 'calculating');
 
         setTimeout(()=>{
 							 // Insert the result.
-			this.showHiddenSpinner('none');
+			this.showHiddenSpinner('none', 'done');
 			document.querySelector('#result').innerHTML = templateHTML;
 		},3000);
 
@@ -96,14 +96,19 @@ class Interface  {
 
     }
 
-    showHiddenSpinner(show){
+    showHiddenSpinner(show, state){
 
 				//Show the spinner and adjust the form
-				const form 	  = document.querySelector('#form');
+				const container = document.querySelector('.container');
 				const spinner = document.querySelector('.spinner');
 				const shadow  = document.querySelector('.shadow');
 
-				form.classList.add("used");
+                if (state == 'calculating'){
+                    container.classList.add("calculating");
+                }else {
+                    container.classList.remove("calculating");
+                }
+				
 				spinner.style.display = `${show}`;
 				shadow.style.display  = `${show}`;
     }

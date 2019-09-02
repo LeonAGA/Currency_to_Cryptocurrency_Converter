@@ -11,19 +11,19 @@ h1 {
 form {
     margin-top: 50px;
 		margin-bottom: 50px;
-		max-height:0px;
 }
 
-form.used{
-	max-height: 5000px;
-	transition: max-height 0.5s linear 0s;
-}
 .main-content {
     background-color: white;
     -webkit-box-shadow: -1px 20px 52px -13px rgba(0,0,0,0.75);
     -moz-box-shadow: -1px 20px 52px -13px rgba(0,0,0,0.75);
     box-shadow: -1px 20px 52px -13px rgba(0,0,0,0.75);
 }
+
+.calculating{
+ height: 398px;
+}
+
 .messages {
 		color: white;
 }
@@ -42,6 +42,7 @@ form.used{
 }
 
 .spinner {
+    margin-top: 25px;
     display: none;
     width: 60px;
     height: 60px;
@@ -56,7 +57,7 @@ form.used{
 	  position: absolute;
 	  opacity: 0.5;
 	  z-index: 0;
-	  box-shadow: 0px 200px 10px 6px black !important;
+	  box-shadow: 0px 130px 10px 6px black !important;
 	  animation: shadowMovement 1.2s infinite ease-in-out;
   }
   
