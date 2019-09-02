@@ -25,7 +25,7 @@ class API {
 
       const urlConvertCurrency = await fetch(url);
 
-      const value = urlConvertCurrency.json();
+      const value = await urlConvertCurrency.json();
 
       return value;
     }
