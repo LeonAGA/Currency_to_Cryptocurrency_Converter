@@ -34,6 +34,6 @@
 - [`Final Fantasy VII Menu`](https://github.com/LeonAGA/Final_Fantasy_VII_Menu)
 - [`BlackBoard`](https://github.com/LeonAGA/Blackboard)
 - [`Agenda`](https://github.com/LeonAGA/Agenda)    
-- [`Message Box `](https://github.com/LeonAGA/Message_Box_LocalStorage)   
-- [`Currency to Cryptocurrency Converter `](https://github.com/LeonAGA/Currency_to_Cryptocurrency_Converter)  
+- [`Message Box`](https://github.com/LeonAGA/Message_Box_LocalStorage)   
+- [`Expenses Account`](https://github.com/LeonAGA/Expenses_Account)  
                              
